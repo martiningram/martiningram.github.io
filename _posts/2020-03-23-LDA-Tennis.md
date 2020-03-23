@@ -1,10 +1,7 @@
 ---
 layout: post
-title: Has tennis become more predictable? Charting tennis's styles over time using Latent Dirichlet Allocation 
+title: LDA on tennis or: has tennis become more predictable?
 ---
-
-
-### Has tennis become more predictable? Charting tennis's styles over time using Latent Dirichlet Allocation
 
 In these tennis-free days, I thought it would be fun to look back at the history of tennis and chart some general trends in playing style. 
 
