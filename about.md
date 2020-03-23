@@ -4,12 +4,18 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+My name is Martin Ingram. I'm a PhD Student at the University of Melbourne,
+Australia, supervised by [Nick
+Golding](https://research.curtin.edu.au/researcher/nick-golding-fea4f81a/) and
+[Damjan Vukcevic](http://damjan.vukcevic.net/). I completed my undergraduate degree in
+Natural Sciences (Physical) at the Unversity of Cambridge in 2014 and a Master's
+degree in Computing Science at Imperial College, supervised by [William
+Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015.
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm interested applying Bayesian statistics to practical problems. You can view
+my publications on [Google
+scholar](https://scholar.google.com/citations?user=AZ-A7AEAAAAJ&hl=en).
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[martin.ingram@gmail.com](mailto:martin.ingram@gmail.com)
