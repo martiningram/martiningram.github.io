@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Has tennis become more predictable? 
-subtitle: Using LDA to chart tennis's styles over time
+title: Topic modelling for tennis -- has it become more predictable?
 ---
 
-In these tennis-free days, I thought it would be fun to look back at the history of tennis and chart some general trends in playing style. 
+In these tennis-free days, I thought it could be fun to look back at the history of tennis and chart some general trends in playing style. 
 
 For a while now, I have been meaning to apply a technique popular in natural language processing, Latent Dirichlet Allocation (LDA) to the data in the Match Charting Project (MCP). If you haven't heard of it, the MCP is a [monumental effort by many volunteers](http://www.tennisabstract.com/charting/meta.html) who watch tennis matches and painstakingly code up the sequence of shots and outcomes of each point. The MCP is by far the most complete source of information about tennis matches -- all other publicly available data sources are limited to, at most, shot-by-shot outcomes with limited or no detail about the rallies themselves.
 
