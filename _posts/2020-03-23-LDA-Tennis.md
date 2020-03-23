@@ -149,7 +149,7 @@ I can't help but wonder how much of these changes are driven by the different fa
 
 Finally, to answer the title question of whether tennis has become more predictable, I look at the mean entropy of matches by year. Loosely speaking, entropy here is just a way of quantifying how spread out the probabilities are; for example, if all matches exclusively used one topic, the entropy would approach zero, while if all matches used all topics equally, the entropy would be about 1.39.
 
-![entropy](entropy.png)
+![entropy]({{ site.baseurl }}/_posts/entropy.png)
 
 The chart suggests that entropy has declined over time and that players are more predictable in their use of topics. The decline appears to have started in the early 90s and really accelerated towards the end of the decade. That doesn't necessarily mean tennis is any less interesting, however: even within the baseline rallying topic, say, there are plenty of nuances not captured by this simple model.
 
