@@ -139,7 +139,7 @@ Ivo Karlovic tops the backhand slice category. Does he ever hit flat / topspin b
 
 How have styles changed over time? To take a look at this, I decided to plot the mean topic probabilities for each year over time and smooth the result:
 
-![over_time]({{ site.baseurl }}/_posts/over_time.png)
+![over_time]({{ site.baseurl }}/images/over_time.png)
 
 The most striking change here, to my mind, is that the "volleying" category has declined dramatically. In a way, that's stating the obvious -- everyone knows that serve & volley is a thing of the past. I found it quite interesting to see how early the decline began however. In the smoothed version, it looks like the volleying topic peaked around 1986 and really started to decline from around 1990, until it reached its current value of around 5% in about 2008. At the same time, as you might expect, the baselining category gained in popularity, from a low point of about 45% of shots in the mid-80s to its current value of about 60%.
 
@@ -149,7 +149,7 @@ I can't help but wonder how much of these changes are driven by the different fa
 
 Finally, to answer the title question of whether tennis has become more predictable, I look at the mean entropy of matches by year. Loosely speaking, entropy here is just a way of quantifying how spread out the probabilities are; for example, if all matches exclusively used one topic, the entropy would approach zero, while if all matches used all topics equally, the entropy would be about 1.39.
 
-![entropy]({{ site.baseurl }}/_posts/entropy.png)
+![entropy]({{ site.baseurl }}/images/entropy.png)
 
 The chart suggests that entropy has declined over time and that players are more predictable in their use of topics. The decline appears to have started in the early 90s and really accelerated towards the end of the decade. That doesn't necessarily mean tennis is any less interesting, however: even within the baseline rallying topic, say, there are plenty of nuances not captured by this simple model.
 
