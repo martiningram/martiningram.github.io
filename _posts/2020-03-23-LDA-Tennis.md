@@ -144,13 +144,13 @@ It's also quite interesting that the "FH rally" topic, while always around, star
 
 I can't help but wonder how much of these changes are driven by the different factors fans like to speculate about. Kuerten famously won the 1997 [using Polyester strings](https://www.tennis.com/pro-game/2017/05/french-open-polyester-strings-gustavo-kuerten-roland-garros-atp-tennis/65921/), and apparently he wasn't the only one to use them by that time. These strings enabled players to hit with heavier topspin and are said to have made it easier to hit passing shots. Certainly the volleying category had already declined by then, down from about 25% in its heyday to only about 15%, so something had likely happened already. Fans also like to talk about surfaces becoming more similar over time. This doesn't seem as obvious to me in the figure since I (perhaps mistakenly?) think of that starting in the early 2000s, but it might have helped continue the decline of volleying during that decade.
 
+I do want to point out however that while it is by far the best source we have, the MCP dataset is not necessarily a representative subset of matches. I haven't dug into the imbalances, but it's possible that more grass court matches were charted in the 80s than later on, for example, which could explain part of the early drop. It's also possible that the players charted are a particular subset, and that players who continued to serve & volley in the nineties are less popular with charters. So it's important to take the  results in this post with a grain of salt.
+
 Finally, to answer the title question of whether tennis has become more predictable, I look at the mean entropy of matches by year. Loosely speaking, entropy here is just a way of quantifying how spread out the probabilities are; for example, if all matches exclusively used one topic, the entropy would approach zero, while if all matches used all topics equally, the entropy would be about 1.39.
 
 ![entropy]({{ site.baseurl }}/images/entropy.png)
 
 The chart suggests that entropy has declined over time and that players are more predictable in their use of topics. The decline appears to have started in the early 90s and really accelerated towards the end of the decade. That doesn't necessarily mean tennis is any less interesting, however: even within the baseline rallying topic, say, there are plenty of nuances not captured by this simple model.
-
-I do want to point out however that while it is by far the best source we have, the MCP dataset is not necessarily a representative subset of matches. I haven't dug into the imbalances, but it's possible that more grass court matches were charted in the 80s than later on, for example, which could explain part of the early drop. It's also possible that the players charted are a particular subset, and that players who continued to serve & volley in the nineties are less popular with charters. So it's important to take these results with a grain of salt.
 
 #### Conclusions
 
