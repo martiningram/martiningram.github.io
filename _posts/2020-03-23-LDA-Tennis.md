@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Topic modelling for tennis -- has it become more predictable?
+title: Has tennis become more predictable? An initial look with a topic model
 ---
 
 In these tennis-free days, I thought it could be fun to look back at the history of tennis and chart some general trends in playing style. 
