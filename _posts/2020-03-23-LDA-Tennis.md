@@ -139,7 +139,7 @@ Ivo Karlovic tops the backhand slice category. Does he ever hit flat / topspin b
 
 How have styles changed over time? To take a look at this, I decided to plot the mean topic probabilities for each year over time and smooth the result:
 
-![over_time](over_time.png)
+![over_time]({{ site.baseurl }}/_posts/over_time.png)
 
 The most striking change here, to my mind, is that the "volleying" category has declined dramatically. In a way, that's stating the obvious -- everyone knows that serve & volley is a thing of the past. I found it quite interesting to see how early the decline began however. In the smoothed version, it looks like the volleying topic peaked around 1986 and really started to decline from around 1990, until it reached its current value of around 5% in about 2008. At the same time, as you might expect, the baselining category gained in popularity, from a low point of about 45% of shots in the mid-80s to its current value of about 60%.
 
