@@ -1,6 +1,7 @@
 ---
 layout: post
-title: LDA on tennis or: has tennis become more predictable?
+title: Has tennis become more predictable? 
+subtitle: Using LDA to chart tennis's styles over time
 ---
 
 In these tennis-free days, I thought it would be fun to look back at the history of tennis and chart some general trends in playing style. 
