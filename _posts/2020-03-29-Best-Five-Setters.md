@@ -5,7 +5,7 @@ title: Grand Slam five-setters to watch
 
 {% include mathjax.html %}
 
-{% include image.html url="/images/j_mac.jpg" description="John McEnroe after the 1980 US Open final. Photograph: Diego Goldberg/Sygma/Corbis" %}
+{% include image.html url="/images/j_mac.jpg" description="<i>John McEnroe after the 1980 US Open final. Photograph: Diego Goldberg/Sygma/Corbis</i>" %}
 
 Much like [Steph Kovalchik did a few days ago](http://on-the-t.com/2020/03/26/atp-best-matches/), now that there is no live tennis I found myself wondering which historical matches to watch. We both developed approaches to pick the most interesting ones, and I think the results are different enough that I thought I'd put my selection up too.
 
