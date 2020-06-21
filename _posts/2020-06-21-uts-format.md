@@ -1,18 +1,24 @@
-# How random is the UTS showdown format?
+---
+layout: post
+title: How good is the UTS format at picking the better player?
+---
+
+{% include mathjax.html %}
+
+{% include image.html url="/images/berrettini_uts.JPG" description="<i>Matteo
+Berrettini at the UTS Showdown. Photograph: Antoine Couvercelle</i>" %}
 
 Controversial as it is, it's been fun to watch the spectacle that is the [Ultimate Tennis Showdown](https://utslive.tv/). Although some of the motivation behind the radical changes to the usual tennis format [might be overly alarmist](https://theracquet.substack.com/p/the-modernisation-of-tennis), the event has managed to bring together some big stars, and I've enjoyed watching some of the contests.
 
-From a tennis statistics point of view, one thing that's immediately striking about the UTS showdown is the format: the match is broken down into four quarters, each 10 minutes long. If the match is tied after the four quarters, it goes to sudden death, where the player who is able to win two points in succession wins.
+From a tennis statistics point of view, one thing that's striking about the UTS showdown is the format: the match is broken down into four quarters, each 10 minutes long. If the match is tied after the four quarters, it goes to sudden death, where the player who is able to win two points in succession wins. I haven't come across this format before. In general, tennis formats at exhibitions tend to be either variants of the usual sets (such as [Fast4](https://en.wikipedia.org/wiki/Fast4_Tennis)), or a sequence of tiebreaks. I haven't seen a format where the time determines when play is stopped.
 
-I haven't come across this format before. In general, tennis formats are either variants of the usual sets (such as the [Fast4](https://en.wikipedia.org/wiki/Fast4_Tennis) format), or multiple tiebreaks. I haven't seen a format where the time determines when play is stopped.
-
-How can we evaluate this format? One way is to look at how good it is at picking the "correct" winner. Assuming that each player has a constant probability of winning each point on their serve, we can determine what fraction of the time the player with the higher win probability is picked. [Steph Kovalchik and I looked at a number of formats in a paper](https://www.degruyter.com/view/journals/jqas/14/1/article-p13.xml) a while back and found that, as you might expect, shorter formats tend to result in a larger number of upsets. Where does the UTS format fit in?
+How can we evaluate this format? One way is to look at how good it is at picking the "correct" winner. Assuming that each player has a constant probability of winning each point on their serve, we can determine what fraction of the time the player with the higher win probability is picked. [Steph Kovalchik and I looked at a number of formats in a paper](https://www.degruyter.com/view/journals/jqas/14/1/article-p13.xml) a while back and found that, as you might expect, shorter formats tend to be worse at doing this, resulting in a larger probability of upsets. That's not ideal, since we would like the best player to win. So where does the UTS format fit in?
 
 **Big caveat**: In what follows, I'm not considering the effect of the "cards" that UTS introduces. I'm sure that they can have a huge effect, especially the "winners count 3x" one. I would expect that they magnify randomness, since individual points played under this rule will have an outsize effect. Here, I'll focus only on the format itself, without taking the cards into account. Also, I did this analysis quite quickly, so there might be some errors. If you see anything wrong, please let me know!
 
-With that out of the way, how do we go about modelling the win probability in UTS? 
+Please note: this article will be fairly maths-y. If you'd like to skip that and go straight to the conclusions, please take a look at the section "How random is UTS?". With that out of the way, how do we go about modelling the win probability in UTS? 
 
-#### Modelling the probability of the number of points
+#### Modelling the probability of the number of points played in a quarter
 
 Unlike in a standard set, the score in UTS doesn't determine when the quarter is over; the clock does. Given the number of points played, we can calculate the win probability (see next section), but first we need to work out what that distribution is.
 
@@ -29,9 +35,9 @@ As for the number of shots following a geometric distribution: the idea here is 
 
 Given these assumptions, point $i$ takes $T_i = N_i * t_s + 15$ seconds. The total time $T$ given that $k$ points are played is then: $T = \sum_{i=1}^k T_i$.
 
-What we want is the distribution of the number of points _given_ that 600 seconds are played. The simplest way to get this distribution is by simulation: draw $N_i$ from the geometric distribution, calculate the duration using the formula for $T_i$, and advance the clock until we hit the time limit. I was feeling fancy and found that because the sum of geometric distributions is negative binomial, the total time given a number of shots is actually a scaled and shifted negative binomial distribution, but the results are similar in either case. We find the following distribution for the number of points:
+What we want is the distribution of the number of points _given_ that 600 seconds are played. The simplest way to get this distribution is by simulation: draw $N_i$ from the geometric distribution, calculate the duration for a point with that many shots using the formula for $T_i$, and advance the clock until we hit the time limit. I was feeling fancy and used the fact that because the sum of geometric distributions is negative binomial, the total time given a number of shots is actually a scaled and shifted negative binomial distribution -- but simulation works just as well and the results are very similar. In any case, we get the following distribution for the number of points:
 
-![](/Users/ingramm/Projects/tennis/blog/martiningram.github.io/images/neg_bin_points.png)
+![points_per_quarter]({{ site.baseurl }}/images/neg_bin_points.png)
 
 For these assumptions, the mode is at 26 points, but between 21 and 31 points seem possible. It would be interesting to compare this against what has happened in the matches so far, but it's hard to tell since the point totals include the 3x multipliers.
 
@@ -62,33 +68,33 @@ $p(\textrm{P1 wins quarter}) = p(\textrm{outright win}) + p(\textrm{win via sudd
 
 Note that $p(Y_1 = k / 2)$ will only be non-zero if $k$ is even, so this should work out (we can't have a tied score if $k$ is odd). What does this look like? It looks like this:
 
-![](/Users/ingramm/Projects/tennis/blog/martiningram.github.io/images/win_prob.png)
+![Win probability given k]({{ site.baseurl }}/images/win_prob.png)
 
 At first I thought something must be wrong because of the staircase shape. But actually, this is due to the possibility of a tie: if the number of points is even, there's a possibility of an extra point being played as a result of a tie; if the number of points is odd, that's not possible. This apparently results in the win probabilities being the same for pairs of consecutive point numbers.
 
 Putting this together with the distribution of points, we can calculate:
 
-$p(\textrm{win quarter}) = \sum_{k=1}^\infin p(\textrm{win quarter | k points played}) p(\textrm{k points played})$
+$p(\textrm{win quarter}) = \sum_{k=1}^\infty p(\textrm{win quarter \| k points played}) p(\textrm{k points played})$
 
-In practice, we don't have to go all the way to infinity since the probability of playing $k$ points drops rapidly above about 35 or so, so we can safely truncate the sum.
+In practice, we don't have to go all the way to infinity since the probability of playing $k$ points drops rapidly above about 35 or so, so we can safely truncate the sum at 50 or so. For our assumption of $p_1 = 0.55$, this gives a 70% probability of winning a quarter.
 
 #### Modelling the match win probability
 
-Finally, we can use the win probability for each quarter to calculate the win probability of the entire match. Once again, there are two ways in which player 1 can win: either outright, winning three or four of the quarters; or they tie and win by sudden death. The sudden death case requires a player to win two points in succession. The first case is a sum of two Binomial probabilities, and a simple calculation gives that the second is:
+Finally, we can use the win probability for each quarter to calculate the win probability of the entire match. Once again, there are two ways in which player 1 can win: either outright, winning three or four of the quarters; or they tie and win by sudden death. The sudden death case requires a player to win two points in succession. The first case is a sum of two Binomial probabilities, and a simple calculation gives that the second should be:
 
 $p_{1sd} = \frac{p_1^2}{1 - 2 p_1 (1 - p_1)}$
 
 Putting it together, we get:
 
-$p(\textrm{win}) = \textrm{Binomial}(3 | 4, p_{quarter}) + \textrm{Binomial}(4 | 4, p_{quarter}) + \textrm{Binomial}(2 | 4, p_{quarter}) p_{1sd}$
+$p(\textrm{win}) = \textrm{Binomial}(3 \| 4, p_{quarter}) + \textrm{Binomial}(4 \| 4, p_{quarter}) + \textrm{Binomial}(2 \| 4, p_{quarter}) p_{1sd}$
 
 where $p_{quarter}$ is the probability of winning a quarter.
 
-#### How random is UTS
+#### How random is UTS?
 
 So, with all the maths out of the way, how reliable is this format at picking the winner, and how does it compare to the usual formats? For the probabilities of $p_{S1} = 70\%$ and $p_{S2} = 60\%$ we were looking at before, which give $p_1 = 55\%$, we find:
 
-$p(win) = 78\%$
+$p(win) = 81\%$
 
 Let's put this into some context. With the same numbers, the probability of winning a tiebreak is:
 
@@ -106,26 +112,28 @@ Finally, a standard best of three match would give:
 
 $p_{bo3}(win) = 89.1\%$
 
-So UTS seems to be a bit more random than a standard tennis set and a best of three Fast4 match, and certainly more random than a regular best of three match.
+So UTS seems to be about as good at picking the winner as a standard tennis set and a best of three Fast4 match, but quite a bit worse than a regular best of three match.
 
 #### Variations
 
-How do things change if we assume that each shot takes a bit longer -- say, 2.5 seconds? In this case, the win probability drops to $75.5\%$. That makes sense, since this will mean that fewer points are played in each quarter, introducing more randomness.
+How do things change if we assume that each shot takes a bit longer -- say, 2.5 seconds? In this case, the win probability drops to $79\%$. That makes sense, since this will mean that fewer points are played in each quarter, introducing more randomness.
 
-What if we made each quarter a bit longer, say 15 minutes? In that case, the win probability rises to $83.2\%$.
+What if we made each quarter a bit longer, say 15 minutes? In that case, the win probability rises to $85.2\%$.
 
-That raises another question: how long would quarters have to be to equal the upset rate of a standard best of three match? I played around and found that quarters would have to be about 24 minutes long.
+That raises another question: how long would quarters have to be to equal the upset rate of a standard best of three match? I played around and found that quarters would have to be about 22 minutes long, but 20 minutes wouldn't be too far off (88.2%).
 
-What if we had two baseliners who, rather than the expected mean rally length of about 5 shots including serve, have only a 10% probability of ending each rally at each shot (10 shots per rally)? In that case, the win probability drops all the way to $73.8\%$. Conversely, if players kept the points short, say at a mean length of 3 shots ($p = \frac{1}{3}$), the probability rises to $81.1\%$. So the format has an interesting sensitivity to the style of tennis played.
+What if we had two baseliners who, rather than the expected mean rally length of about 5 shots including serve, have only a 10% probability of ending each rally at each shot (10 shots per rally)? In that case, the win probability drops to $78.4\%$. Conversely, if players kept the points short, say at a mean length of 3 shots ($p = \frac{1}{3}$), the probability rises to $82.6\%$. So the format seems to have a slight sensitivity to the style of tennis played.
 
-Finally, I was curious about another variation: what if we didn't reset the score after each quarter, and just played 40 minutes straight? This simple format would have a probability of $84.1\%$ of picking the winner, making it considerably better. I think this makes intuitive sense: by resetting the score at each quarter, we are discarding valuable information: a win could be by one point, or by ten points, which should tell us something about the players' relative skills. A single long format would not discard any information about the margin of victory. Playing an hour would bring the probability up to 89.1%, equalling the best of three match.
+Finally, I was curious about another variation: what if we didn't reset the score after each quarter, and just played 40 minutes straight? This simple format would have a probability of $84.9\%$ of picking the winner, making it considerably more efficient. I think this makes intuitive sense: a quarter could be won by one point, or by ten points, which should tell us something about the players' relative skills, but summarising each quarter as simply "win" or "loss" discards it. A single long format would not discard any information about the margin of victory. Playing an hour would bring the probability up to 89.6%, surpassing the efficiency of a best of three match.
 
-#### Does it all make sense?
+#### Conclusions
 
-I had to make a number of assumptions in this analysis, and it's entirely possible there is some bug in the analysis. But assuming I got it all right, the results are quite interesting, I think.
+I had to make a number of assumptions in this analysis, and it's entirely possible there is some bug somewhere. But assuming I got it all right, the results are quite interesting, I think.
 
-Compared to Fast4, this format is an interesting alternative. Being exactly 40 minutes long makes it more predictable in length, while being almost as good at picking the winner.
+Compared to Fast4, this format is an interesting alternative. Being exactly 40 minutes long makes it more predictable in length, while being just as good at picking the winner.
 
-Compared to a standard best of three match, perhaps the format looks a bit less interesting. As mentioned before, it seems we would have to extend each quarter to 24 minutes to match its upset rate, which would mean a match duration of 96 minutes. This is a bit surprising to me, given that best of three matches are often around that length, despite players typically taking considerably longer breaks between points. Perhaps this is because best of three matches automatically "adapt", ending more quickly when the difference in skills is large, and taking longer when it is small. For a lop-sided match, UTS might be unnecessarily long. The "extended" UTS format would however avoid very long matches (which sometimes can take 3h+), apparently without sacrificing predictability, which may be a benefit.
+Compared to a standard best of three match, perhaps the format looks a bit less interesting. As mentioned before, it seems we would have to extend each quarter to 22 minutes to match its upset rate, which would mean a match duration of 88 minutes. This was initially a bit surprising to me, given that best of three matches are often around that length, despite players typically taking considerably longer breaks between points. Perhaps this is because best of three matches automatically "adapt", ending more quickly when the difference in skills is large, and taking longer when it is small. For a lopsided match, UTS might be unnecessarily long. The 20-minute "extended" UTS format would however avoid very long matches (which sometimes can take 3h+), apparently without sacrificing predictability, which may be a benefit.
 
-Finally, I thought it was interesting to see that not resetting the score after each quarter would, at least in theory, result in a considerably more efficient format. Perhaps a one-hour contest following this format would be an interesting alternative to a best of three match with a more predictable length. Of course players would require breaks at regular intervals, but this should be easy to incorporate.
+I only looked at one pair of serve-winning probabilities. I think it would be interesting to consider the full range, although hopefully not too much should be lost by fixing them to a single value.
+
+Finally, I thought it was interesting to see that not resetting the score after each quarter would, at least in theory, result in a considerably more efficient format. Perhaps a one-hour contest following this format would be an interesting alternative to a best of three match, with a more predictable length and similar ability to pick the better player as the winner.
