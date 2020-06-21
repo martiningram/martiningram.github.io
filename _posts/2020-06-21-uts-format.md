@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How good is the UTS format at picking the correct winner?
+title: How good is the UTS format at picking the better player?
 ---
 
 {% include image.html url="/images/berrettini_uts.JPG" description="<i>Matteo
