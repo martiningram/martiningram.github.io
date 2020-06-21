@@ -1,12 +1,12 @@
 ---
 layout: post
-title: How good is the UTS format at picking the better player?
+title: How good is the UTS format at picking the correct winner?
 ---
-
-{% include mathjax.html %}
 
 {% include image.html url="/images/berrettini_uts.JPG" description="<i>Matteo
 Berrettini at the UTS Showdown. Photograph: Antoine Couvercelle</i>" %}
+
+{% include mathjax.html %}
 
 Controversial as it is, it's been fun to watch the spectacle that is the [Ultimate Tennis Showdown](https://utslive.tv/). Although some of the motivation behind the radical changes to the usual tennis format [might be overly alarmist](https://theracquet.substack.com/p/the-modernisation-of-tennis), the event has managed to bring together some big stars, and I've enjoyed watching some of the contests.
 
