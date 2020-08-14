@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+<img src="/images/photo.png" alt="Me" width="150"/>
+
 My name is Martin Ingram. I'm a PhD Student at the University of Melbourne,
 Australia, supervised by [Nick
 Golding](https://research.curtin.edu.au/researcher/nick-golding-fea4f81a/) and
