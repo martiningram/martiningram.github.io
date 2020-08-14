@@ -18,6 +18,13 @@ I'm interested applying Bayesian statistics to practical problems. You can view
 my publications on [Google
 scholar](https://scholar.google.com/citations?user=AZ-A7AEAAAAJ&hl=en).
 
+My github account is here: [github](https://github.com/martiningram)
+
+One current focus is on researching variational inference algorithms that are
+both fast and accurate enough. I am doing some work on this using the JAX
+package in python. Some code for this is in the [SVGP
+repository](https://github.com/martiningram/svgp).
+
 ### Contact me
 
 [martin.ingram@gmail.com](mailto:martin.ingram@gmail.com)
