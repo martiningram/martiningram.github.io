@@ -1,6 +1,6 @@
 ---
 layout: post
-title: US Open ratings
+title: US Open Elo preview
 ---
 
 {% include image.html url="/images/novak_uso_smaller.jpg" description="<i>Novak Djokovic
