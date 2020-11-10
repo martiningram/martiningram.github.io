@@ -19,8 +19,8 @@ estimates of posterior variances and covariances from ADVI and other variational
 inference methods. In this post, I'll talk a bit about this approach and my
 experience of implementing it in JAX.
 
-The paper is very well written and provides proofs that I haven't yet worked
-through in detail, so I won't talk about those in this post. Instead, I want to
+The paper provides proofs that I haven't yet worked through in detail, so I
+won't talk about the paper's derivations in this post. Instead, I want to
 highlight a key result that's useful for ADVI. That result is the following
 posterior covariance estimate:
 
