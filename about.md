@@ -28,8 +28,7 @@ repository](https://github.com/martiningram/svgp).
 ### Papers
 
 **How to extend Elo: a Bayesian perspective**: Published in
-[JQAS](https://www.degruyter.com/view/journals/jqas/ahead-of-print/article-10.1515-jqas-2020-0066/article-10.1515-jqas-2020-0066.xml). Submitted
-version is available [here]({{ site.baseurl }}/images/bayes_elo.pdf).
+[JQAS](https://www.degruyter.com/view/journals/jqas/ahead-of-print/article-10.1515-jqas-2020-0066/article-10.1515-jqas-2020-0066.xml).
 
 ### Contact me
 
