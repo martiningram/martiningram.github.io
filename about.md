@@ -25,6 +25,12 @@ both fast and accurate enough. I am doing some work on this using the JAX
 package in python. Some code for this is in the [SVGP
 repository](https://github.com/martiningram/svgp).
 
+### Papers
+
+**How to extend Elo: a Bayesian perspective**: Published in
+[JQAS](https://www.degruyter.com/view/journals/jqas/ahead-of-print/article-10.1515-jqas-2020-0066/article-10.1515-jqas-2020-0066.xml). Submitted
+version is available [here]({{ site.baseurl }}/images/bayes_elo.pdf).
+
 ### Contact me
 
 [martin.ingram@gmail.com](mailto:martin.ingram@gmail.com)
