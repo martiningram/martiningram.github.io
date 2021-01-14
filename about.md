@@ -12,7 +12,8 @@ Golding](https://research.curtin.edu.au/researcher/nick-golding-fea4f81a/) and
 [Damjan Vukcevic](http://damjan.vukcevic.net/). I completed my undergraduate degree in
 Natural Sciences (Physical) at the Unversity of Cambridge in 2014 and a Master's
 degree in Computing Science at Imperial College, supervised by [William
-Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015.
+Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015. You can
+find my full resume [here]({{ site.baseurl }}/misc/cv.pdf).
 
 I'm interested applying Bayesian statistics to practical problems. You can view
 my publications on [Google
@@ -24,6 +25,7 @@ One current focus is on researching variational inference algorithms that are
 both fast and accurate enough. I am doing some work on this using the JAX
 package in python. Some code for this is in the [SVGP
 repository](https://github.com/martiningram/svgp).
+
 
 ### Papers
 
