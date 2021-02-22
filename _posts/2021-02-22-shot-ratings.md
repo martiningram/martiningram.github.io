@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rating best forehands and backhands since 1990
+title: Rating the ATP's best forehands and backhands since 1990
 ---
 
 {% include image.html url="/images/agassi.png" description="<i>Andre Agassi hitting a backhand. Photograph: Pierre Verdy -- AFP/Getty Images</i>" %}
