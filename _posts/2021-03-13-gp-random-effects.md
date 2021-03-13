@@ -151,7 +151,11 @@ We can also take a look at the estimated random effects for the players. Of play
 | Guido Pella                 |   0.64 | 0.17 |
 | Marton Fucsovics            |   0.57 | 0.16 |
 
-As you'd expect, Mats Wilander is high up here (just look at [this rally](https://www.youtube.com/watch?v=OYds3V-fAXk) -- not actually the longest ever, but still), and I think the others seem mostly reasonable too. 
+As you'd expect, Mats Wilander is high up here (just look at [this
+rally](https://www.youtube.com/watch?v=OYds3V-fAXk) -- not actually the longest
+ever, but still), and I think the others seem mostly reasonable too. Gilles
+Simon tops the list: rallies against him are expected to be 1.38 shots longer
+than usual.
 
 We can also look at the fifteen who are estimated to shorten rallies the most:
 
