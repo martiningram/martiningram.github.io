@@ -3,9 +3,9 @@ layout: post
 title: Rally lengths on the log scale
 ---
 
-{% include mathjax.html %}
-
 {% include image.html url="/images/random_effects_log_post/simon_smaller.JPG" description="<i>Gilles Simon. Photograph: REUTERS/Gonzalo Fuentes</i>" %}
+
+{% include mathjax.html %}
 
 Last week, I [wrote about random effects in GPs](https://martiningram.github.io/gp-random-effects/), motivated by smoothing rally lengths over time in tennis. I'd thought this would be quite a niche topic, but to my surprise, it got a fair bit of interest. I was humbled to receive comments from some of my favourite GP researchers. Neil Lawrence, one of these people, made the following suggestion:
 
