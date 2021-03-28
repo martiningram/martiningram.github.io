@@ -180,3 +180,6 @@ We can also look at the fifteen who are estimated to shorten rallies the most:
 This seems to be a mix of serve-volleyers and big servers, which also seems reasonable. Don't expect long rallies if you're watching a Karlovic - Opelka match, for example.
 
 Overall, I hope you found this blog post interesting. Personally, I think adding random effects to GPs can be a reasonable thing to do a lot of the time, and I'm likely to use the "random effects kernel" a fair bit in the future.
+
+UPDATE (28th March 2021): The code I used to fit the GP in this blog post is now
+available [here](https://colab.research.google.com/drive/1JRQZ0n5QOujR3oR6SeNtMvtvUteFxJ0H?usp=sharing).
