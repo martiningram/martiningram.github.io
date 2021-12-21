@@ -13,7 +13,7 @@ opportunities. Before my PhD, I completed my undergraduate degree in Natural
 Sciences (Physical) at the Unversity of Cambridge in 2014 and a Master's degree
 in Computing Science at Imperial College, supervised by [William
 Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015. You can
-find my full resume [here]({{ site.baseurl }}/misc/cv_english_minimal.pdf).
+find my full resume [here]({{ site.baseurl }}/misc/cv.pdf).
 
 I'm interested applying Bayesian statistics to practical problems. You can view
 my publications on [Google
