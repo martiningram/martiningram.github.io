@@ -5,6 +5,8 @@ title: MCMC for big datasets -- faster sampling with JAX and the GPU
 
 {% include mathjax.html %}
 
+_Written with help from [Thomas Wiecki](https://twitter.com/twiecki) and the PyMC developers_
+
 You'll often hear people say that MCMC is too slow for big datasets. For the very biggest datasets with millions of observations, there may be some truth to that. But the developers of PyMC and Stan are constantly refining their samplers, and it's now possible to fit models to much bigger datasets than you might think. 
 
 In particular, since [the PyMC developers introduced it a bit over a year ago](https://pymc-devs.medium.com/the-future-of-pymc3-or-theano-is-dead-long-live-theano-d8005f8a0e9b), I've been really excited about PyMC's JAX support. I've been a fan of JAX for years and think that it's a great platform for Bayesian modelling. What's so intriguing about JAX is that it allows the use of both JIT compilation and GPUs, which can both accelerate model fitting. Currently, PyMC uses [numpyro's](https://github.com/pyro-ppl/numpyro) NUTS sampler to do sampling with JAX. I'm more familiar with PyMC and Stan, so that's what I'll focus on here, but numpyro is also an interesting project in its own right, and I urge you to check it out.
