@@ -68,4 +68,5 @@ Analytics Conference. [PDF]({{ site.baseurl }}/papers/hot-heads-cool-heads.pdf).
 
 ### Contact me
 
+[Twitter](https://twitter.com/xenophar)
 [martin.ingram@gmail.com](mailto:martin.ingram@gmail.com)
