@@ -21,7 +21,6 @@ scholar](https://scholar.google.com/citations?user=AZ-A7AEAAAAJ&hl=en).
 
 My github account is here: [github](https://github.com/martiningram)
 
-
 ### Papers
 
 **How to extend Elo: a Bayesian perspective** _Ingram_ (2021): Published in
