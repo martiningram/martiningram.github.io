@@ -69,7 +69,7 @@ many possible choices, but the usual one is the Kullback-Leibler divergence
 between $$q(\theta; \eta)$$ and $$p(\theta | y)$$, defined as:
 
 $$\textrm{KL}[q(\theta; \eta) || p(\theta | y)] = \mathbb{E}_{q(\theta; \eta)}
-\frac{\log q(\theta ; \eta)}{\log p(\theta | y)}$$
+\log \frac{q(\theta ; \eta)}{p(\theta | y)}$$
 
 The notation with the subscript means that the expectation is taken over the
 variational distribution $$q(\theta; \eta)$$. Why this discrepancy measure? The
