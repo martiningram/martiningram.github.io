@@ -8,12 +8,12 @@ permalink: /about/
 
 My name is Martin Ingram. I recently submitted my PhD on scaling Bayesian
 hierarchical models to large datasets at the University of Melbourne,
-Australia. Now, I've moved to Munich, Germany and am open to
-opportunities. Before my PhD, I completed my undergraduate degree in Natural
-Sciences (Physical) at the Unversity of Cambridge in 2014 and a Master's degree
-in Computing Science at Imperial College, supervised by [William
-Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015. You can
-find my full resume [here]({{ site.baseurl }}/misc/cv.pdf).
+Australia. Now, I've moved to Munich, Germany and am working for
+[KONUX](https://www.konux.com/). Before my PhD, I completed my undergraduate
+degree in Natural Sciences (Physical) at the Unversity of Cambridge in 2014 and
+a Master's degree in Computing Science at Imperial College, supervised by
+[William Knottenbelt](https://www.imperial.ac.uk/people/w.knottenbelt) in 2015.
+You can find my resume [here]({{ site.baseurl }}/misc/cv.pdf).
 
 I'm interested applying Bayesian statistics to practical problems. You can view
 my publications on [Google
