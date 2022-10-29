@@ -5,11 +5,11 @@ title: Deriving the objective in Hensman et al. 2015
 
 {% include mathjax.html %}
 
-One of the main useful papers in my PhD was the [2015 paper by James Hensman, Alexander G. de G. Matthews, and Zoubin Ghahramani](https://proceedings.mlr.press/v38/hensman15.pdf). It's a really terrific and influential paper which allows GPs to be fitted to huge datasets. However, as a conference paper, it is quite short and leaves out some details. It took me quite a long time to get there, butI think I have a fairly good understanding of the method now, so I thought I'd try to share my derivation in case it's useful for others. 
+One of the main useful papers in my PhD was the [2015 paper by James Hensman, Alexander G. de G. Matthews, and Zoubin Ghahramani](https://proceedings.mlr.press/v38/hensman15.pdf). It's a really terrific and influential paper which allows GPs to be fitted to huge datasets. However, as it is  a conference paper, it is quite short and leaves out some details. It took me quite a long time to get there, but I think I have a fairly good understanding of the method now, so I thought I'd try to share my derivation in case it's useful for others. 
 
 #### The general problem
 
-The problem that the paper is trying to solve is that GP methods do not scale well with the number of data points, $N$. The paper presents an _inducing point_ approach: the idea is that we could perhaps approximate the full GP, conditioned on all $N$ points, by cleverly selecting a much smaller set of $M$ points and approximating the GP's value there..
+The problem that the paper is trying to solve is that GP methods do not scale well with the number of data points, $N$. The paper presents an _inducing point_ approach: the idea is that we could perhaps approximate the full GP, conditioned on all $N$ points, by cleverly selecting a much smaller set of $M$ points. If we choose the GP values at these points well, we can hope to make predictions that are similar to those made using the full dataset. Intuitively, this will work particularly well if the function approximated by the GP doesn't vary very quickly. In that case, even a few well-chosen points and values could do a good job at approximating the full GP.
 
 #### How does this help?
 
@@ -50,7 +50,7 @@ $$
 \Sigma = K_{nn} - K_{nm}K_{mm}^{-1}K_{mn}.
 $$
 
-So if we had a point estimate of the function value at the inducing points, we can predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $a$ is itself not a single point but a normal distribution, but more on that later.
+So if we had a point estimate of the function value at the inducing points, we can predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $a$ is itself not a single point but a normal distribution.
 
 #### The variational idea
 
@@ -60,7 +60,7 @@ $$
 p(u | y, \theta) = \frac{p(u|\theta) p(y | u, \theta)}{p(y)},
 $$
 
-where $u$ are the values of the GP at the inducing points, and $\theta$ are hyperparameters like lengthscales and variances. In general, when the likelihood is non-Gaussian, we cannot solve this equation analytically. So what do we do? Variational inference considers the following KL-divergence:
+where $u$ are the values of the GP at the inducing points, and $\theta$ are hyperparameters like lengthscales and variances. In general, when the likelihood is non-Gaussian, we cannot find the distribution on the left hand side analytically. So what do we do? Variational inference considers the following KL-divergence:
 
 $$
 KL[q(u | \eta) || p(u|y, \theta)].
@@ -72,7 +72,7 @@ $$
 q(u|\eta) = \mathcal{N}(u|m, S),
 $$
 
-so our variational parameters $\eta$ consist of the means $m$ and a covariance matrix $S$. Essentially, the goal is to pick $m$ and $S$ so that $q(u \mid \eta)$ matches our posterior distribution, $p(u \mid y, \theta)$, as closely as possible in the sense of the KL divergence.
+so our variational parameters $\eta$ consist of the means $m$ and a covariance matrix $S$. Essentially, the goal is to pick $m$ and $S$ so that $q(u \mid \eta)$ matches our posterior distribution, $p(u \mid y, \theta)$, as closely as possible in the sense of the KL divergence. That means we minimise the divergence as a function of $m$ and $S$.
 
 #### The first bound
 
@@ -106,7 +106,7 @@ $$
 -\mathbb{E}_{u \sim q(u|\eta)} \log \left[ \mathbb{E}_{f \sim p(f | u, \theta)} p(y |f, \theta) \right].
 $$
 
-Intuitively, this expression actually makes sense. We draw the value of the GP at the inducing points, $u$; then we draw the value of the GP at the data points given them and the hyperparameters, $f \mid u, \theta$; and then we use these to compute the log likelihood. But the problem is that this isn't terribly easy to evaluate.
+Intuitively, this expression actually makes sense. To estimate the log likelihood using Monte Carlo samples, we could draw the value of the GP at the inducing points, $u$; then we draw the value of the GP at the data points given them and the hyperparameters, $f \mid u, \theta$; and then we use these to compute the log likelihood. But the problem is that this isn't terribly easy to optimise.
 
 #### Jensen's inequality to the rescue
 
