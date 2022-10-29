@@ -66,13 +66,13 @@ $$
 KL[q(u | \eta) || p(u|y, \theta)].
 $$
 
-Here, $$q(u|\eta)$$ is a distribution we choose to approximate the posterior distribution on the inducing point values $u$. Here, we'll choose
+Here, $q(u \mid \eta)$ is a distribution we choose to approximate the posterior distribution on the inducing point values $u$. Here, we'll choose
 
 $$
 q(u|\eta) = \mathcal{N}(u|m, S),
 $$
 
-so our variational parameters $\eta$ consist of the means $m$ and a covariance matrix $S$. Essentially, the goal is to pick $m$ and $S$ so that $q(u|\eta)$ matches our posterior distribution, $p(u | y, \theta)$, as closely as possible in the sense of the KL divergence.
+so our variational parameters $\eta$ consist of the means $m$ and a covariance matrix $S$. Essentially, the goal is to pick $m$ and $S$ so that $q(u \mid \eta)$ matches our posterior distribution, $p(u \mid y, \theta)$, as closely as possible in the sense of the KL divergence.
 
 #### The first bound
 
@@ -90,7 +90,7 @@ $$
 
 where the constant term is constant with respect to the variational parameters $\eta$ we are seeking to find.
 
-Now what? The first term is easy. We defined $q(u|\eta)$ to be multivariate normal, and $p(u | \theta)$ is the GP prior, which is also multivariate normal. The KL divergence between two multivariate normals has a closed form, so no issues there.
+Now what? The first term is easy. We defined $q(u \mid \eta)$ to be multivariate normal, and $p(u \mid \theta)$ is the GP prior, which is also multivariate normal. The KL divergence between two multivariate normals has a closed form, so no issues there.
 
 The second term is more problematic. Really, the likelihood is a function of $f$, the value of the GP at the data points, and not at the inducing points u. These two are related as follows:
 
@@ -106,7 +106,7 @@ $$
 -\mathbb{E}_{u \sim q(u|\eta)} \log \left[ \mathbb{E}_{f \sim p(f | u, \theta)} p(y |f, \theta) \right].
 $$
 
-Intuitively, this expression actually makes sense. We draw the value of the GP at the inducing points, $u$; then we draw the value of the GP at the data points given them and the hyperparameters, $f | u, \theta$; and then we use these to compute the log likelihood. But the problem is that this isn't terribly easy to evaluate.
+Intuitively, this expression actually makes sense. We draw the value of the GP at the inducing points, $u$; then we draw the value of the GP at the data points given them and the hyperparameters, $f \mid u, \theta$; and then we use these to compute the log likelihood. But the problem is that this isn't terribly easy to evaluate.
 
 #### Jensen's inequality to the rescue
 
@@ -175,9 +175,9 @@ $$
 and so
 
 $$
-&-\mathbb{E}_{f \sim q(f | \eta, \theta)} \log p(y| f, \theta) = \\
-&-\mathbb{E}_{f \sim q(f | \eta, \theta)} \sum_{i=1}^N \log p(y_i| f_i, \theta) = \\
-&-\sum_{i=1}^N \mathbb{E}_{f_i \sim q(f_i | \eta, \theta)} \log p(y_i| f_i, \theta)
+-\mathbb{E}_{f \sim q(f | \eta, \theta)} \log p(y| f, \theta) = \\
+-\mathbb{E}_{f \sim q(f | \eta, \theta)} \sum_{i=1}^N \log p(y_i| f_i, \theta) = \\
+-\sum_{i=1}^N \mathbb{E}_{f_i \sim q(f_i | \eta, \theta)} \log p(y_i| f_i, \theta)
 $$
 
 This is now the sum of a bunch of 1D expectations, which can be solved efficiently and accurately using quadrature.
@@ -248,7 +248,7 @@ $$
 Defining $A = K_{nm}K_{mm}^{-1}$ gives:
 
 $$
-\text{Cov}(f^*, f^* | \eta) = K_{nn} - A K_{mn} + ASA^\intercal = K_{nn} + A(S - K_{mm})A^\intercal,
+\text{Cov}(f^*, f^* | \eta) = K_{nn} - A K_{mn} + ASA^T = K_{nn} + A(S - K_{mm})A^T,
 $$
 
 as stated in the Hensman et al. paper.
