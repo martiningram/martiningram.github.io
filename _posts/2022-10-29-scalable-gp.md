@@ -261,15 +261,14 @@ Now we have all the pieces we need. As stated before, the first part of the KL
 divergence has a closed form. The second term involving the likelihood was more
 tricky. We first had to bound it using Jensen's inequality. Then we could use
 the laws of total expectation and covariance to get the means and variances
-needed at each data point. We can then use these together with quadrature to
-compute the expectations required for our bound on the log likelihood.
+needed at each data point. Finally, We could use these together with quadrature
+to compute the expectations required for our bound on the log likelihood.
 
 And that's it! That's all we need. Note that this is all pretty neat. As long as
 we can compute the 1D expectations, any likelihood will do. For some, like the
-Poisson, I think we can even compute them analytically. For others, like the
-Bernoulli with a logit or probit link, we can use quadrature, as mentioned. And
-the largest matrix we have to invert is of size $M \times M$, which is
-manageable.
+Poisson, we can even compute them analytically. For others, like the Bernoulli
+with a logit or probit link, we can use quadrature, as mentioned. And the
+largest matrix we have to invert is of size $M \times M$, which is manageable.
 
 This blog post ended up a bit longer than I thought it would, and to be honest,
 even after several years of thinking about this I'd still like to be a bit
