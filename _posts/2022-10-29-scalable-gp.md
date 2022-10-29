@@ -66,7 +66,7 @@ $$
 KL[q(u | \eta) || p(u|y, \theta)].
 $$
 
-Here, $q(u|\eta)$ is a distribution we choose to approximate the posterior distribution on the inducing point values $u$. Here, we'll choose
+Here, $$q(u|\eta)$$ is a distribution we choose to approximate the posterior distribution on the inducing point values $u$. Here, we'll choose
 
 $$
 q(u|\eta) = \mathcal{N}(u|m, S),
