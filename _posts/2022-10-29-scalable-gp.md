@@ -5,7 +5,7 @@ title: Deriving the objective in Hensman et al. 2015
 
 {% include mathjax.html %}
 
-One of the main useful papers in my PhD was the [2015 paper by James Hensman, Alexander G. de G. Matthews, and Zoubin Ghahramani](https://proceedings.mlr.press/v38/hensman15.pdf). However, it took me quite a long time to understand it. I think I have a fairly good understanding of the method now, so I thought I'd try to share my derivation in case it's useful for others.
+One of the main useful papers in my PhD was the [2015 paper by James Hensman, Alexander G. de G. Matthews, and Zoubin Ghahramani](https://proceedings.mlr.press/v38/hensman15.pdf). It's a really terrific and influential paper which allows GPs to be fitted to huge datasets. However, as a conference paper, it is quite short and leaves out some details. It took me quite a long time to get there, butI think I have a fairly good understanding of the method now, so I thought I'd try to share my derivation in case it's useful for others. 
 
 #### The general problem
 
