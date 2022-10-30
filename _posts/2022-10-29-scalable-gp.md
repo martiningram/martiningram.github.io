@@ -13,7 +13,7 @@ The problem that the paper is trying to solve is that GP methods do not scale we
 
 #### How does this help?
 
-Before we go into how to fit an inducing point model, let's first consider how it could actually work. Let's say we have a set of inducing points $Z$. This $Z$ will be a matrix of shape $M \times D$, where $D$ is the number of dimensions in our dataset. These are inteded to summarise the design matrix $X$ which has shape $N \times D$. Inducing point models like the one in Hensman et al. approximate the GP's function values $u$ at these points.
+Before we go into how to fit an inducing point model, let's first consider how it could actually work. Let's say we have a set of inducing points $Z$. This $Z$ will be a matrix of shape $M \times D$, where $D$ is the number of dimensions in our dataset. These are intended to summarise the design matrix $X$ which has shape $N \times D$. Inducing point models like the one in Hensman et al. approximate the GP's function values $u$ at these points.
 
 How do we actually predict new data $f^*$? Well, under the GP prior, the function values at any set of data points are jointly normal, and their covariance at any two points $x_1$ and $x_2$ is given by the value of the kernel function, $k(x_1, x_2)$. Generally, we also assume that the GP prior has zero mean. So the prior is then:
 
