@@ -38,10 +38,10 @@ $$
   \right)
 $$
 
-Here, the second equality just simplifies the notation a bit for later. Now we can condition. Let's say we knew the exact value at the inducing points; call it $a$. Then by the [general expressions for the multivariate normal](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Conditional_distributions), we know that the conditional distribution of $f^*$ is going to be multivariate normal with mean
+Here, the second equality just simplifies the notation a bit for later. Now we can condition. Let's say we knew the exact value at the inducing points. Then by the [general expressions for the multivariate normal](https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Conditional_distributions), we know that the conditional distribution of $f^*$ is going to be multivariate normal with mean
 
 $$
-\mu = K_{nm} K_{mm}^{-1} a
+\mu = K_{nm} K_{mm}^{-1} u
 $$
 
 and covariance
@@ -263,7 +263,7 @@ Now we have all the pieces we need. As stated before, the first part of the KL
 divergence has a closed form. The second term involving the likelihood was more
 tricky. We first had to bound it using Jensen's inequality. Then we could use
 the laws of total expectation and covariance to get the means and variances
-needed at each data point. Finally, We could use these together with quadrature
+needed at each data point. Finally, we could use these together with quadrature
 to compute the expectations required for our bound on the log likelihood.
 
 And that's it! That's all we need. Note that this is all pretty neat. As long as
