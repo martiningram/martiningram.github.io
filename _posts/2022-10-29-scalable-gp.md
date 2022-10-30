@@ -15,7 +15,7 @@ The problem that the paper is trying to solve is that GP methods do not scale we
 
 Before we go into how to fit an inducing point model, let's first consider how it could actually work. Let's say we have a set of inducing points $Z$. This $Z$ will be a matrix of shape $M \times D$, where $D$ is the number of dimensions in our dataset. These are inteded to summarise the design matrix $X$ which has shape $N \times D$. Inducing point models like the one in Hensman et al. approximate the GP's function values $u$ at these points.
 
-How do we actually predict new data $f^*$? Well, under the GP prior, any set of data points is jointly normal, and the covariance at any two points $x_1$ and $x_2$ is given by the value of the kernel function, $k(x_1, x_2)$. Generally, we also assume that the GP prior has zero mean. So the prior is then:
+How do we actually predict new data $f^*$? Well, under the GP prior, the function values at any set of data points are jointly normal, and their covariance at any two points $x_1$ and $x_2$ is given by the value of the kernel function, $k(x_1, x_2)$. Generally, we also assume that the GP prior has zero mean. So the prior is then:
 
 $$
 \left[\begin{array}{c}  f^* \\ u  \end{array}\right] \sim
@@ -50,14 +50,14 @@ $$
 \Sigma = K_{nn} - K_{nm}K_{mm}^{-1}K_{mn}.
 $$
 
-So if we had a point estimate of the function value at the inducing points, we can predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $a$ is itself not a single point but a normal distribution.
+So if we had a point estimate of the function value at the inducing points, we could predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $a$ is itself not a single point but a normal distribution.
 
 #### The variational idea
 
 The posterior distribution we're interested in is
 
 $$
-p(u | y, \theta) = \frac{p(u|\theta) p(y | u, \theta)}{p(y)},
+p(u | y, \theta) = \frac{p(u|\theta) p(y | u, \theta)}{p(y | \theta)},
 $$
 
 where $u$ are the values of the GP at the inducing points, and $\theta$ are hyperparameters like lengthscales and variances. In general, when the likelihood is non-Gaussian, we cannot find the distribution on the left hand side analytically. So what do we do? Variational inference considers the following KL-divergence:
@@ -76,7 +76,7 @@ so our variational parameters $\eta$ consist of the means $m$ and a covariance m
 
 #### The first bound
 
-OK, so we'll be using the KL divergence. Where does this actually get us? Let's see. The KL divergence in general can be written as
+OK, so we'll be using the KL divergence. Where does this actually get us? Let's see. The KL divergence between $q(x)$ and $p(x)$ can be written as
 
 $$
 \mathbb{E}_{x \sim q(x)} [\log q(x) - \log p(x)].
@@ -88,9 +88,9 @@ $$
 KL[q(u|\eta) || p(u|y, \theta)] = KL[q(u|\eta) || p(u | \theta)] - \mathbb{E}_{u \sim q(u|\eta)} \log p(y | u, \theta) + const.,
 $$
 
-where the constant term is constant with respect to the variational parameters $\eta$ we are seeking to find.
+where the constant term is constant with respect to the variational parameters $\eta$ we are seeking to find. This is what we'd like to minimise. Note that it sort of makes sense: the first term encourages the approximation to be close to the prior, and minimising the second implies maximising the expected likelihood under the approximation.
 
-Now what? The first term is easy. We defined $q(u \mid \eta)$ to be multivariate normal, and $p(u \mid \theta)$ is the GP prior, which is also multivariate normal. The KL divergence between two multivariate normals has a closed form, so no issues there.
+How do we compute this? The first term is easy. We defined $q(u \mid \eta)$ to be multivariate normal, and $p(u \mid \theta)$ is the GP prior, which is also multivariate normal. The KL divergence between two multivariate normals has a closed form, so no issues there.
 
 The second term is more problematic. Really, the likelihood is a function of $f$, the value of the GP at the data points, and not at the inducing points u. These two are related as follows:
 
@@ -162,7 +162,9 @@ $$
 -\mathbb{E}_{f \sim q(f | \eta, \theta)} \log p(y| f, \theta).
 $$
 
-Phew! OK.
+Phew! OK. So if we're OK with making this additional approximation, we can
+replace the complicated likelihood term with this one which, as we'll see in a
+moment, we can compute.
 
 #### Computing this bound
 
@@ -242,7 +244,7 @@ $$
 The first term here is just $\Sigma$ again, as it's constant. The second term is
 
 $$
-\text{Cov}(K_{nm}K_{mm}^{-1}u, K_{nm}K_{mm}^{-1}u) =  \\ K_{nm}K_{mm}^{-1} \text{Cov}(u, u|\eta)K_{mm}^{-1}K_{mn} = \\ K_{nm}K_{mm}^{-1}SK_{mm}^{-1}K_{mn}
+\text{Cov}(K_{nm}K_{mm}^{-1}u, K_{nm}K_{mm}^{-1}u|\eta) =  \\ K_{nm}K_{mm}^{-1} \text{Cov}(u, u|\eta)K_{mm}^{-1}K_{mn} = \\ K_{nm}K_{mm}^{-1}SK_{mm}^{-1}K_{mn}
 $$
 
 Defining $A = K_{nm}K_{mm}^{-1}$ gives:
@@ -253,7 +255,7 @@ $$
 
 as stated in the Hensman et al. paper.
 
-To summarise, then, if we'd like to get the mean and covariance at a new set of points, we can use the laws of total covariance and total expectation to derive them from the variational distribution at the inducing points.
+To summarise, then, if we'd like to get the mean and covariance at a new set of points, we can use the laws of total covariance and total expectation to derive them from the variational distribution at the inducing points. When computing our approximate likelihood, we need just the marginal means and variances at the data points, which we can then use with quadrature.
 
 #### Putting it all together & short summary
 
