@@ -50,7 +50,7 @@ $$
 \Sigma = K_{nn} - K_{nm}K_{mm}^{-1}K_{mn}.
 $$
 
-So if we had a point estimate of the function value at the inducing points, we could predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $a$ is itself not a single point but a normal distribution.
+So if we had a point estimate of the function value at the inducing points, we could predict a distribution at any other set of points using the kernel function and these expressions. Later we'll see that we can do this even if $u$ is itself not a single point but follows a normal distribution.
 
 #### The variational idea
 
