@@ -232,7 +232,7 @@ $$
 by the law of total expectation. Even better, we can use the law of total covariance to get the covariance. We have that
 
 $$
-\Sigma = \text{Cov}(f^*, f^*|\eta, u) = K_{mn} - K_{nm}K_{mm}^{-1}K_{mn}.
+\Sigma = \text{Cov}(f^*, f^*|\eta, u) = K_{nn} - K_{nm}K_{mm}^{-1}K_{mn}.
 $$
 
 By the [law of total covariance](https://en.wikipedia.org/wiki/Law_of_total_covariance), we have
