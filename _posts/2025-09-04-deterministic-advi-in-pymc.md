@@ -183,6 +183,14 @@ You can see that there is a little bit of scatter introduced by the fixed
 draws. But as I hope you'll agree, it's not that big, and the overall agreement
 looks pretty good.
 
+We can summarise things by looking at the mean absolute error in the serve and
+return skill means compared to MCMC, and plotting it against the runtime:
+
+![ADVI and DADVI runtimes]({{ site.baseurl }}/images/dadvi_post/runtime_vs_error.png)
+
+Again, you can see that DADVI comes close to the longer ADVI run in terms of
+error, but terminates earlier.
+
 ### Player skill estimates
 
 We can now take a quick look at the mean estimates. We have 2.2k players, but to
