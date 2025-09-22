@@ -8,16 +8,16 @@ title: Fast approximate inference without convergence worries in PyMC
 If you have a great memory, you might remember that about five years ago, I
 posted about [deterministic ADVI in
 JAX](https://martiningram.github.io/deterministic-advi/), or DADVI for
-short. That kicked off some work with the amazing Ryan Giordano and Tamara
+short. That kicked off some work with the wonderful Ryan Giordano and Tamara
 Broderick, and we worked on a paper together that [investigated DADVI in
 depth](https://jmlr.org/papers/v25/23-1015.html). I feel very grateful to have
-worked with such brilliant coauthors on this.
+worked with such brilliant coauthors.
 
 Now, I'm excited to say that a first version of DADVI is part of
 [pymc-extras](https://github.com/pymc-devs/pymc-extras), which means that it's
 easy to fit PyMC models with DADVI. Well, not all of DADVI yet -- it doesn't yet
 include its linear response component (more on that in a bit) -- but it already
-removes convergence worries, so I thought I'd write a short post about this.
+removes the convergence worries, so I thought I'd write a short post about this.
 
 ### What's Black Box Variational Inference?
 
@@ -64,21 +64,21 @@ them. Three stand out:
    posterior means correctly.
    
 DADVI fixes (1) and, with something called linear response theory, can help with
-(2). It doesn't fix ADVI completely, though: when the variational objective
+(2). It doesn't solve all the problems, though: when the variational objective
 fails to capture important parts of the posterior, it can still provide a bad
 approximation even to the means, so (3) can still be a concern. So it's best to
 be a bit careful and not blindly trust what variational inference gives you.
 
-The PyMC implementation of DADVI doesn't include the linear response extension
-yet, so it'll only fix the convergence issues, not the variances. But as you'll
-see in a moment, I think that can already make life a bit easier.
+The PyMC implementation of DADVI doesn't include the linear response parts yet,
+so it'll only fix the convergence issues, not the variances. But as you'll see
+in a moment, I think that can already make life a bit easier.
 
 ### Tennis example
 
 Rather than just talking about it, I thought it might be fun to demonstrate how
 DADVI works on an actual example. I like tennis, so I used [Jeff Sackmann's
 Tennis ATP dataset](https://github.com/JeffSackmann/tennis_atp) to fit a model
-to estimate players' serve and return skill. It's the same model as I fit
+to estimate players' serve and return skill. It's the same model I fit
 [here](https://martiningram.github.io/historical-serve-return/), but we have
 some more years of data since then, so it'll be fun to see where the new players
 end up. Using all data available starting from 1990, the dataset contains about
@@ -96,9 +96,9 @@ of 0.3, and the intercept is 0.5, then his expected probability of winning a
 point on serve would be $\text{logit}^{-1}(0.7) \approx 67\%$. The inverse logit
 function makes sure that the result is always between 0 and 1.
 
-The server and return skills are given hierarchical priors. I'll leave it at
-that for now so as not to bog things down too much, but I'll put the full model
-as well as its code in PyMC at the end if you're interested.
+The server and return skills are given hierarchical priors. I won't go into more
+detail here, but I'll put the full model as well as its code in PyMC at the end
+if you're interested.
 
 Once the model is defined, we can try different inference methods in PyMC. For
 example, we can fit ADVI as follows:
@@ -119,17 +119,17 @@ with m:
 ```
 
 This takes about 10.5 minutes, so it's definitely slower (though to be honest,
-it's pretty impressive for MCMC given the size of the dataset), but it should do
-a good job at capturing the posterior distribution. Now we can comparethe mean
+it's pretty impressive for MCMC given the size of the dataset). But it should do
+a good job at capturing the posterior distribution. Now we can compare the mean
 serve skill estimates from ADVI and MCMC:
 
 ![Default ADVI vs NUTS]({{ site.baseurl }}/images/dadvi_post/advi_short_comparison.png)
 
 Here, each point on the scatter plot is a player's serve skill, and the dashed
-red line indicates equality. If ADVI reached the same result as MCMC, all the
-points would lie on or near the dashed line. But while there's definitely some
-correlation here, the points are pretty far off. Maybe it hasn't converged?
-Let's run it for much longer -- 100k iterations -- and include its convergence
+red line indicates equality. If ADVI matched the MCMC means, all the points
+would lie on or near the dashed line. But while there's definitely some
+correlation here, many points are pretty far off. Maybe it hasn't converged?
+Let's run it for longer -- 100k iterations -- and include its convergence
 criterion so it can stop early if it's converged:
 
 ```python
@@ -202,20 +202,20 @@ half the time). Here they are:
 ![Skill estimates]({{ site.baseurl }}/images/dadvi_post/player_skills.png)
 
 I've coloured the points by whether the players were still active in 2024 (some
-of them have retired by now), which is the last year covered in the dataset. The
-diagonal lines are lines where the sum of serve and return skills are equal,
-which you can interpret as the players being roughly equal in
-strength. 
+of them have retired by now, so that's a little bit outdated), which is the last
+year covered in the dataset. The diagonal lines are lines where the sum of serve
+and return skills are equal, which you can interpret as the players being
+roughly equal in strength.
 
-Unfortunately, the dataset doesn't contain any data for 2025 yet, so it's not
-quite up to date. But I think it's interesting to see that the big three --
-Nadal, Djokovic and Federer -- sit on or near their own diagonal line with the
-highest sum of serve and return skills. The new stars, Alcaraz and Sinner, don't
-yet quite match their strength, sitting on the next diagonal line down. But note
-that these are career averages, and Alcaraz and Sinner are still improving, so
-it'll be interesting to see how close they can get to the big three as they play
-more. Their impressive 2025 stats will probably push them closer, and I'm
-looking forward to checking things again when the dataset is updated.
+Unfortunately, the dataset doesn't contain any data for 2025 yet. But I think
+it's interesting to see that the big three -- Nadal, Djokovic and Federer -- sit
+on or near their own diagonal line with the highest sum of serve and return
+skills. The new stars, Alcaraz and Sinner, don't yet quite match their strength,
+sitting on the next diagonal line down. But note that these are career averages,
+and Alcaraz and Sinner are still improving, so it'll be interesting to see how
+close they can get to the big three as they play more. Their impressive 2025
+stats will probably push them closer, and I'm looking forward to checking things
+again when the dataset is updated.
 
 ### Summary and thoughts
 
@@ -224,14 +224,15 @@ useful for your projects. I think the lack of convergence worries does make it
 more compelling than ADVI, though as I said, I'd like to warn you that there are
 models where the mean-field objective gets even the means wrong, so it's best to
 be a bit cautious. But when the MCMC samplers get too slow, I think DADVI is
-worth a go.
+definitely worth a shot, and I hope you find it useful.
 
 If you want to know more about DADVI, I recommend [our
-paper](https://jmlr.org/papers/v25/23-1015.html). As I mentioned, I didn't cover
-linear response here, which is able to correct the (co-)variances when the means
-are well estimated, so I'll cover that in a future blog post when it's
-implemented in PyMC. Apart from that, I'd like to investigate how much faster
-DADVI can run on GPUs (since a fair bit of it can be parallelised).
+paper](https://jmlr.org/papers/v25/23-1015.html), which contains lots more
+detail and theoretical analyses. As I mentioned, I didn't cover linear response
+here, which is able to correct the (co-)variances when the means are well
+estimated, so I'll cover that in a future blog post when it's implemented in
+PyMC. Apart from that, I'd like to investigate how much faster DADVI can run on
+GPUs (since a fair bit of it can be parallelised).
 
 In the meantime though, if you give DADVI a go, let me know how it goes! And if
 you want to try to run the model in this post, you can take a look at the code
